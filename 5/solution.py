@@ -1,4 +1,5 @@
 import os
+import re
 
 with open(os.path.join('5','test_input.txt'), 'r') as f:
     input_data = f.read()
@@ -12,14 +13,17 @@ state_rows = state_rows[:-1]
 for i, r in enumerate(state_rows):
     state_rows[i] = r.replace("   ","[]").replace(" ","")[1:-1].split("][")
     # state_rows[i] = r[1:-1]
-REGEX = r"^[a-z\s]+(\d+)[\sa-z\s]+(\d+)[\sa-z\s]+(\d+)"
+
+REGEX = r"\d+"
+regex = re.compile(REGEX)
 
 
-# def parse_instructions(instruction):
+def parse_instructions(instruction):
+    return regex.findall(instruction)
     
 
 
 
-print(state_rows)
+# print(state_rows)
 
-# print(parse_instructions("move 1 from 2 to 1"))
+print(parse_instructions("move 1 from 22 to 1"))
